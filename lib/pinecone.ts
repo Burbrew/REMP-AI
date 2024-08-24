@@ -1,7 +1,13 @@
 import { Pinecone } from '@pinecone-database/pinecone';
 
+const pineconeApiKey = process.env.PINECONE_API_KEY;
+
+if (!pineconeApiKey) {
+  throw new Error("PINECONE_API_KEY environment variable is not set");
+}
+
 const pinecone = new Pinecone({
-  apiKey: process.env.PINECONE_API_KEY || '6aab4eb5-7f2f-4974-bee6-c9b2dce09ce2', // Provide a fallback or handle undefined
+  apiKey: pineconeApiKey,
 });
 
 export { pinecone }
